@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Application;
+use App\Models\Candidate;
 use Illuminate\Http\Request;
 
 class ApplicationController extends Controller
@@ -18,5 +19,16 @@ class ApplicationController extends Controller
         $application = Application::create($request->all());
 
         return response()->json($application, 201);
+    }
+    public function applications($candidateId)
+    {
+        $candidate = Candidate::findOrFail($candidateId);
+        $applications = $candidate->applications;
+        
+        if ($applications) {
+            return response()->json($applications);
+        } else {
+            return response()->json(['message' => 'CV not found for the candidate.'], 404);
+        }
     }
 }

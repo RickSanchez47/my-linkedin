@@ -24,4 +24,16 @@ class CVController extends Controller
 
         return response()->json($cv, 201);
     }
+    public function getCvByCandidate($candidateId)
+    {
+        $candidate = Candidate::findOrFail($candidateId);
+        $cv = $candidate->cvs;
+        
+        if ($cv) {
+            return response()->json($cv);
+        } else {
+            return response()->json(['message' => 'CV not found for the candidate.'], 404);
+        }
+    }
+
 }

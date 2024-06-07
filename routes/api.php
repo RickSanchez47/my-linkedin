@@ -11,8 +11,10 @@ Route::post('/job-posts', [JobPostController::class, 'store']);
 Route::get('/job-posts/{id}/candidates', [JobPostController::class, 'getCandidates']);
 
 Route::post('/cvs', [CVController::class, 'store']);
+Route::get('/candidates/{candidate}/cvs', [CVController::class, 'getCvByCandidate']);
 
 Route::post('/applications', [ApplicationController::class, 'apply']);
+Route::get('/applied-applications/{candidate}', [ApplicationController::class, 'applications']);
 
 Route::post('/interviews', [InterviewController::class, 'arrange']);
 Route::get('/interviews/{id}/download-cv', [InterviewController::class, 'downloadCV']);

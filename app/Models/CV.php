@@ -9,6 +9,8 @@ class CV extends Model
 {
     use HasFactory;
 
+    protected $table = 'cvs';
+
     public function candidate()
     {
         return $this->belongsTo(Candidate::class);
